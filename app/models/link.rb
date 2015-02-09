@@ -6,8 +6,8 @@ class Link < ActiveRecord::Base
   private
 
   def generate_slug
-    unless self.slug
-      self.slug = self.id.to_s(36)
+    unless slug
+      slug = id.to_s(36)
     end
   end
 end
