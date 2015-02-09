@@ -1,4 +1,6 @@
 class Link < ActiveRecord::Base
+  belongs_to :user
+
   after_save :generate_slug
 
   private
