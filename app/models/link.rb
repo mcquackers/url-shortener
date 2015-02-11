@@ -3,6 +3,7 @@ class Link < ActiveRecord::Base
 
   belongs_to :user
   has_many :clicks
+  has_one :info_record
 
   after_create :generate_slug
 
