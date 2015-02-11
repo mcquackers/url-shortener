@@ -2,6 +2,7 @@ class Link < ActiveRecord::Base
   validate :is_a_valid_url
 
   belongs_to :user
+  has_many :clicks
 
   after_create :generate_slug
 
