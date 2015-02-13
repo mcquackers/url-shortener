@@ -4,7 +4,7 @@ class CreateInfoRecords < ActiveRecord::Migration
       t.integer :link_id, null: false
       t.integer :user_id, null: false
       t.string :url, null: false
-      t.string :slug
+      t.string :slug, unique: true
       t.boolean :disabled, default: false, null: false
 
       t.timestamps null: false

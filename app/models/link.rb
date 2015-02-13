@@ -12,12 +12,14 @@ class Link < ActiveRecord::Base
 
   def is_a_valid_url
     http_request = Net::HTTP.new(url)
+    http_request.read_timeout = 10
     begin
       http_response = http_request.request_get("/")
-      puts http_response.code
-      http_response.code == "200"
-    rescue
-      errors.add(:url, "Must be a valid non-directing URL")
+      unless http_response.code == "200"
+        errors.add(:url, "Must be a valid non-redirecting URL")
+      end
+    rescue Errno::ECONNREFUSED, Errno::ETIMEDOUT
+      errors.add(:url, "The website did not respond")
     end
   end
 
@@ -28,11 +30,11 @@ class Link < ActiveRecord::Base
 
   def generate_info_record
     self.info_record = InfoRecord.create(
-      user_id: self.user_id,
-      link_id: self.id,
-      url: self.url,
-      slug: self.slug,
-      disabled: self.disabled
+      user_id: user_id,
+      link_id: id,
+      url: url,
+      slug: slug,
+      disabled: disabled
       )
   end
 end
