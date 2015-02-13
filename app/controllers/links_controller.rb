@@ -13,8 +13,18 @@ class LinksController < ApplicationController
 
   def show
     slug = slug_params
-    link = Link.find_by(:slug, slug)
+    link = Link.find_by(slug: slug)
     link.clicks.create
     redirect_to link.url
+  end
+
+  private
+
+  def link_params
+    params.require(:link).permit(:url)
+  end
+
+  def slug_params
+    params[:slug]
   end
 end
