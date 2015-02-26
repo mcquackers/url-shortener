@@ -12,7 +12,7 @@ class Link < ActiveRecord::Base
 
   def is_a_valid_url
     http_request = Net::HTTP.new(url)
-    http_request.read_timeout = 10
+    # http_request.read_timeout = 10
     begin
       http_response = http_request.request_get("/")
       unless http_response.code == "200"

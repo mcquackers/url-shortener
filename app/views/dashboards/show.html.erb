@@ -1,0 +1,17 @@
+<h2>URL Shortener</h2>
+
+<div class = "Url-generation-form">
+  <% if @user %>
+    <%= form_for [@user, Link.new] do |form| %>
+      <%= form.label :url %>
+      <%= form.text_field :url %>
+      <br />
+      <%= form.submit %>
+    <% end %>
+  <% end %>
+  <div class = "links-list">
+    <ul>
+      <%= render @links %>
+    </ul>
+  </div>
+</div>

@@ -4,6 +4,9 @@ class DashboardsController < ApplicationController
   def show
     if signed_in?
       @user = current_user
+      @links = @user.links
+    else
+      @links = []
     end
   end
 end

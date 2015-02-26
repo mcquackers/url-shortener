@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   end
   resource :dashboard, only: [:show]
 
-  root "dashboard#show"
+  root "dashboards#show"
 
   get ":slug" => "links#show"
 end
