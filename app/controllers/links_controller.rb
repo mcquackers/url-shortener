@@ -14,8 +14,6 @@ class LinksController < ApplicationController
   def show
     slug = slug_params
     link = Link.find_by(slug: slug)
-    uri = URI.parse(link.url)
-    binding.pry
     link.clicks.create
     redirect_to link.url
   end
